@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("./db")()
+require("./db")();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -16,12 +16,35 @@ const io = new Server(server, {
 });
 
 app.use(cors({ origin: ["http://localhost:3000", process.env.CLIENT] }));
-app.use(express.json())
-app.use("/",router)
+app.use(express.json());
+app.use("/", router);
 app.get("/", (req, res) => {
-    res.send("<h1>Hello World!</h1>");
+  res.send("<h1>Hello World!</h1>");
 });
-  
+
+/********** socket.io ***********/
+
+const FileController = require("./controllers/file");
+
+io.on("connection", (socket) => {
+  socket.on("get-file", async (fileData) => {
+    const file = await FileController.getFile(fileData);
+    const fileId = fileData?.fileId;
+    socket.join(fileData?.fileId);
+    socket.emit("send-file", file);
+
+    socket.on("send-changes", async (data) => {
+      await FileController.update({ fileId, data });
+      socket.broadcast.to(fileId).emit("rec-changes", data);
+    });
+  });
+
+  socket.on("send-changes", (data) => {
+    socket.broadcast.emit("receive-changes", data);
+  });
+});
+
+/********** socket.io ***********/
 
 server.listen(PORT, () => {
   console.log("listening on port " + PORT);

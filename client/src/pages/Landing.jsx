@@ -3,7 +3,7 @@ import Navbar from '../components/common/Navbar'
 
 const Landing = () => {
   return (
-    <div className="bg-[#111] text-white pt-4 px-8">
+    <div className="bg-[#000] text-white pt-4 px-8">
       <Navbar/>
     </div>
   )

@@ -1,14 +1,12 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        dfront: '##E35F21'
-      }
+        dfront: "##E35F21",
+      },
     },
   },
-  plugins: [],
-  darkMode: 'class'
-}
+  plugins: [require("tailwind-scrollbar-hide")],
+  darkMode: "class",
+};
