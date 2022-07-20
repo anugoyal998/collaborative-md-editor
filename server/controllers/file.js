@@ -18,6 +18,7 @@ class FileController {
     }
   }
   async update(data) {
+    if(!data)return null
     if (!verifyBody(data, ["fileId", "data"])) return null;
     try {
       return await FileModel.updateOne(

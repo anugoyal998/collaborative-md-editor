@@ -32,17 +32,15 @@ io.on("connection", (socket) => {
     const fileId = fileData?.fileId;
     socket.join(fileData?.fileId);
     socket.emit("send-file", file);
-
-    socket.on("send-changes", async (data) => {
+    socket.on("send-changes", async ({data,senderId}) => {
       await FileController.update({ fileId, data });
-      socket.broadcast.to(fileId).emit("rec-changes", data);
+      console.log(data,senderId)
+      // io.to(fileId).emit("rec-changes", data);
+      socket.broadcast.to(fileId).emit('rec-changes', {data,senderId});
     });
   });
-
-  socket.on("send-changes", (data) => {
-    socket.broadcast.emit("receive-changes", data);
-  });
 });
+
 
 /********** socket.io ***********/
 

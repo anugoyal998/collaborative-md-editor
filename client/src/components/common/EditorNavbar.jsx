@@ -5,6 +5,7 @@ import LoginBtn from "../buttons/LoginBtn";
 import { FaUserAlt } from "react-icons/fa";
 import TimeAgo from "react-timeago";
 import { HiOutlineDocumentDownload } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 
 const EditorNavbar = ({ lastEdited, value }) => {
   const auth = myAuth((state) => state.auth);
@@ -21,7 +22,9 @@ const EditorNavbar = ({ lastEdited, value }) => {
   return (
     <div className="h-12">
       <div className="flex justify-between items-center">
-        <img className="w-28" src={logo} alt="logo" />
+       <Link to="/">
+       <img className="w-28" src={logo} alt="logo" />
+       </Link>
         <div className="flex items-center space-x-5">
           {auth && auth?.isAuth && lastEdited && (
             <div className="flex">
@@ -30,8 +33,9 @@ const EditorNavbar = ({ lastEdited, value }) => {
             </div>
           )}
 
-          <button onClick={downloadFile} >
+          <button onClick={downloadFile} className="tooltip" >
             <HiOutlineDocumentDownload className="text-2xl" />
+            <span className="tooltiptext">Download</span>
           </button>
         
 

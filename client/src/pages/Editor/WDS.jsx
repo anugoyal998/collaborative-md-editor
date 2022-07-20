@@ -7,55 +7,28 @@ import { io } from "socket.io-client";
 import { useAuth } from "../../hooks/useAuth";
 import { myAuth } from "../../states";
 
-const Editor = () => {
-  const loading = useAuth();
+const WDS = () => {
+    const loading = useAuth();
   const auth = myAuth((state) => state.auth);
-  const socket = useRef();
   const [value, setValue] = useState("");
   const [params,setParams] = useSearchParams()
   const [fileId, setFileId] = useState()
   const [lastEdited, setLastEdited] = useState()
-  useEffect(() => {
-    document.documentElement.setAttribute("data-color-mode", "dark");
-  }, []);
+  const [socket,setSocket] = useState()
 
   useEffect(() => {
     const id = params.get('fileId')
     setFileId(id)
-    socket.current = io(
-      process.env.REACT_APP_SERVER || "http://localhost:5000"
-    );
-    socket && socket.current && socket.current.emit('get-file',{
-      fileId: id,
-      userId: auth?.user?._id,
-      data: value,
-    })
-    return () => {
-      socket.current.disconnect();
-    };
+    document.documentElement.setAttribute("data-color-mode", "dark");
   }, []);
 
   useEffect(() => {
-    if(!socket)return
-    socket && socket.current && socket.current.on('send-file',data=> {
-      setValue(data?.data)  
-      setLastEdited(data?.updatedAt)
-    })
+    const s = io(process.env.REACT_APP_SERVER || 'http://localhost:5000')
+    setSocket(s)
+    return ()=> {
+        s.disconnect()
+    }
   },[])
-
-  useEffect(() => {
-    if (!socket || !socket.current) return;
-    socket && socket.current && socket.current.emit("send-changes", value);
-    setLastEdited(Date.now())
-  }, [value]);
-
-  useEffect(() => {
-    if (!socket || !socket.current) return;
-    const handler = e=> setValue(e)
-    socket &&
-      socket.current &&
-      socket.current.off("rec-changes",handler).on("rec-changes",handler);
-  }, []);
 
   return (
     <div className="pt-4 px-8 scrollbar-hide bg-black text-white">
@@ -70,7 +43,7 @@ const Editor = () => {
         <MDEditor.Markdown source={value} style={{ whiteSpace: "pre-wrap" }} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Editor;
+export default WDS

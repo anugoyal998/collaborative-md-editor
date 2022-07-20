@@ -14,6 +14,7 @@ const App = () => {
   const auth = myAuth((state) => state.auth.user);
 
   if (loading) {
+    console.log('anubhav',loading)
     return (
       <div className="bg-black text-white h-screen w-screen flex items-center flex-col">
         <div className="w-full">

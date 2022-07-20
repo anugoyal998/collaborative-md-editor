@@ -5,10 +5,8 @@ import { GoMarkdown } from 'react-icons/go'
 import GoogleLoginBtn from '../../components/buttons/GoogleLoginBtn'
 import GithubLoginBtn from '../../components/buttons/GithubLoginBtn'
 import { Toaster } from 'react-hot-toast'
-import { useAuth } from '../../hooks/useAuth'
 
 const Auth = () => {
-  const loading = useAuth()
   return (
     <div className="bg-[#000] text-white w-screen h-screen px-8 pt-4">
       <Toaster/>
