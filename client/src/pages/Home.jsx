@@ -36,13 +36,13 @@ const Home = () => {
   return (
     <>
       <div className="bg-black text-white">
-        <div className="pt-4 mx-8">
+        <div className="pt-4 mx-4 sm:mx-8">
           <HomeNavbar username={username} />
         </div>
         <hr className="mt-3 border-[#444]" />
       </div>
       <div
-        className="bg-[#111] pt-6 px-8"
+        className="bg-[#111] pt-6 px-4 sm:px-8"
         style={{
           minHeight: "calc(100vh - 50px)",
         }}
@@ -76,7 +76,7 @@ const SearchBar = ({ setSearch, search }) => {
 
 const ShowFiles = ({ data, sortedFiles, search }) => {
   return (
-    <div className="grid grid-cols-3 gap-8 mt-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-6">
       {!search
         ? data?.map((file) => {
             return <Card file={file} />;

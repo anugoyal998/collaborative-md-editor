@@ -6,8 +6,8 @@ import mdEditor from "../img/md-editor.mp4";
 const Landing = () => {
   return (
     <>
-      <div className="polka h-[230px] w-[350px] absolute z-0 right-0"></div>
-      <div className="polka h-[350px] w-[350px] absolute z-0 left-0 bottom-0"></div>
+      <div className="hidden xl:inline-flex polka h-[230px] w-[350px] absolute z-0 right-0"></div>
+      <div className="hidden xl:inline-flex polka h-[350px] w-[350px] absolute z-0 left-0 bottom-0"></div>
       <div className="bg-[#000] text-white pt-4 px-8">
         <Navbar />
         <Content />
