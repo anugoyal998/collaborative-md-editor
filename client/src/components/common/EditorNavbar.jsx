@@ -83,7 +83,7 @@ const EditorNavbar = ({ lastEdited, value, fileName, setFileName, fileId }) => {
               <p className="truncate">{username}</p>
               <FaUserAlt />
             </button>
-          ) : (
+          ) : ( 
             <LoginBtn />
           )}
         </div>
