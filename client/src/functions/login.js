@@ -6,9 +6,10 @@ export const loginFunc = async (response,provider) => {
   const user = {
     displayName: response.user?.displayName,
     email: response.user?.email,
-    avatar: `https://avatars.dicebear.com/api/open-peeps/${
-      response?.user?.email?.split("@")[0] || "placeholder"
-    }.svg`,
+    // avatar: `https://avatars.dicebear.com/api/open-peeps/${
+    //   response?.user?.email?.split("@")[0] || "placeholder"
+    // }.svg`,
+    avatar: response.user?.photoURL,
     provider,
   };
   try {

@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/common/Navbar";
-import mdEditor from '../img/md-editor.mp4';
+import mdEditor from "../img/md-editor.mp4";
 
 const Landing = () => {
   return (
@@ -43,12 +44,20 @@ const Content = () => {
       <p className="text-center text-lg text-gray-300">
         Write <strong>README </strong> easily.
       </p>
-      <button className="text-xl font-semibold bg-[#E35F21] my-6 px-8 py-3 rounded-sm">
-        Get Started
-      </button>
+      <Link to="/editor">
+        <button className="text-xl font-semibold bg-[#E35F21] my-6 px-8 py-3 rounded-sm">
+          Get Started
+        </button>
+      </Link>
       <div className="z-10 my-[8vh]">
         {/* <img src={demo} className="rounded-xl BS1" /> */}
-        <video src={mdEditor} autoPlay={true} muted loop className="BS rounded-2xl" />
+        <video
+          src={mdEditor}
+          autoPlay={true}
+          muted
+          loop
+          className="BS rounded-2xl"
+        />
       </div>
     </div>
   );

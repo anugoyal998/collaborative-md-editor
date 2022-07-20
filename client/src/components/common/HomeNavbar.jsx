@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 const HomeNavbar = ({ username }) => {
   return (
+    <>
     <div className="flex justify-between items-center">
       <Link to="/" >
       <img className="w-28" src={logo} alt="logo" />
@@ -14,6 +15,15 @@ const HomeNavbar = ({ username }) => {
         <MdEditorBtn />
         <ProfileBtn username={username} />
       </div>
+    </div>
+    </>
+  )
+}
+
+const DropDown = ()=> {
+  return(
+    <div className="absolute right-[3vw]">
+      anubhav
     </div>
   )
 }

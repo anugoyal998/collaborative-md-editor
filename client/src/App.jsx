@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Landing, Auth, Home, Editor } from "./pages";
 import Navbar from "./components/common/Navbar";
-import Spinner from "./components/spinners/Spinner";
+import RingSpinner from "./components/spinners/RingSpinner";
 
 import { useAuth } from "./hooks/useAuth";
 import { myAuth } from "./states";
@@ -20,7 +20,7 @@ const App = () => {
         <div className="w-full">
           <Navbar showLogin={false} />
         </div>
-        <Spinner />
+        <RingSpinner />
         <p className="text-xl font-semibold -mt-5">Loading...</p>
       </div>
     );

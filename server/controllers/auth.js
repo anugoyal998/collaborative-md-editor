@@ -72,6 +72,17 @@ class AuthController {
       errorHandler(res, err);
     }
   }
+
+  async logout(req, res){
+    const {rt: refreshToken} = req.body
+    // delte refresh token from db
+    try {
+      await TokenService.removeToken(refreshToken)
+      res.status(200).json({auth: true})
+    } catch (err) {
+      errorHandler(res, err);
+    }
+}
 }
 
 module.exports = new AuthController();

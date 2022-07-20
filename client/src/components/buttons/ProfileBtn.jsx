@@ -1,12 +1,46 @@
-import React from "react";
-import { FaChevronDown } from "react-icons/fa";
+import React, { useState } from "react";
+import { logout } from "../../http";
+import { myAuth } from "../../states";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
-const ProfileBtn = ({ username }) => {
+const ProfileBtn = () => {
+  const auth = myAuth((state) => state.auth);
+  const navigate = useNavigate();
+  const [flag, setFlag] = useState(false);
   return (
-    <button className="flex space-x-2 items-center text-lg bg-[#E35F21] px-8 py-[0.35rem] rounded-3xl hover:bg-[#e35e21d3] animation">
-      <span>{username}</span>
-      <FaChevronDown />
-    </button>
+    <>
+      <div className="cursor-pointer" onClick={() => setFlag(!flag)}>
+        <img src={auth?.user?.avatar} className="w-10 h-10 rounded-full" />
+      </div>
+      {flag && <DropDown auth={auth} navigate={navigate} />}
+    </>
+  );
+};
+
+const DropDown = ({ auth, navigate }) => {
+  return (
+    <div className="absolute right-[2vw] mt-[30vh] w-[250px] bg-black border border-[#444] rounded-md py-3">
+      <p className="px-3 truncate cursor-pointer hover:bg-[#222] py-2">
+        {auth?.user?.email}
+      </p>
+      <button
+        className="px-3 w-full text-left cursor-pointer hover:bg-[#222] py-2"
+        onClick={async () => {
+          try {
+            await logout();
+            Cookies.remove("accessToken");
+            Cookies.remove("refreshToken");
+            navigate("/");
+            window.location.reload();
+          } catch (error) {
+            console.log(error);
+          }
+        }}
+      >
+        Logout
+      </button>
+    </div>
   );
 };
 
