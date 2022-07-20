@@ -36,9 +36,9 @@ const EditorNavbar = ({ lastEdited, value, fileName, setFileName, fileId }) => {
             } `}
           >
             <input
-              type="text"
+              type="text" 
               disabled={!editFlag}
-              defaultValue={fileName || "Untitled"}
+              defaultValue={fileName}
               className="bg-black outline-none py-1 border-r border-[#444]"
               onChange={(e) => setFileName(e.target.value)}
               autoFocus
