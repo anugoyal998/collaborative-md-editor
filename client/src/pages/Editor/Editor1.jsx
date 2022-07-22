@@ -12,16 +12,16 @@ const Editor1 = () => {
     localStorage.setItem("data", value);
   }, [value]);
   return (
-    <div className="pt-4 px-8 scrollbar-hide bg-black text-white">
+    <div className="pt-4 px-2 sm:px-8 scrollbar-hide bg-black text-white">
       <EditorNavbar value={value} />
       <div
         className="mt-3 scrollbar-hide"
         style={{ minHeight: "calc(100vh - 48px)" }}
       >
         <p className="my-4 text-lg font-semibold">Markdown Editor</p>
-        <MDEditor value={value} onChange={setValue} autoFocus />
-        <p className="my-4 text-lg font-semibold">Preview</p>
-        <MDEditor.Markdown source={value} style={{ whiteSpace: "pre-wrap" }} />
+        <MDEditor value={value} onChange={setValue} autoFocus className="h-[80vh]" />
+        <p className="my-4 text-lg font-semibold block sm:hidden">Preview</p>
+        <MDEditor.Markdown className="block sm:hidden" source={value} style={{ whiteSpace: "pre-wrap" }} />
       </div>
     </div>
   );

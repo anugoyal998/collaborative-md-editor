@@ -67,7 +67,7 @@ const Dev = () => {
 
   if (fileId) {
     return (
-      <div className="pt-4 px-8 scrollbar-hide bg-black text-white">
+      <div className="pt-4 px-2 sm:px-8 scrollbar-hide bg-black text-white">
         <EditorNavbar
           lastEdited={lastEdited}
           value={value}

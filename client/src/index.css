@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -19,20 +18,20 @@
   box-shadow: rgba(227, 95, 33, 0.35) 0px 0px 35px;
 }
 
-.wmde-markdown-var.w-md-editor.w-md-editor-show-live{
-background: black !important;
+.wmde-markdown-var.w-md-editor.w-md-editor-show-live {
+  background: black !important;
 }
 
 .w-md-editor-toolbar {
-background: #000 !important;
+  background: #000 !important;
 }
 
 .wmde-markdown.wmde-markdown-color.w-md-editor-preview {
-background: #000 !important;
+  background: #000 !important;
 }
 
 .wmde-markdown.wmde-markdown-color {
-background: #000 !important;
+  background: #000 !important;
 }
 
 .tooltip {
@@ -58,19 +57,32 @@ background: #000 !important;
   visibility: visible;
 }
 
+@media screen and (max-width: 640px) {
+  .w-md-editor-toolbar ul:nth-child(2) {
+    display: none !important;
+  }
+  .wmde-markdown.wmde-markdown-color.w-md-editor-preview {
+    display: none !important;
+  }
+  .w-md-editor-input {
+    width: 100% !important;
+  }
+}
+
 /* ...or add this class to an element */
 .polka {
-  background-image: 
-    radial-gradient(rgba(255, 255, 255,0.3) 16.4%, transparent 21.2%);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.3) 16.4%,
+    transparent 21.2%
+  );
   background-position: 12px 12px;
   background-size: 24px 24px;
   background-color: rgb(0, 0, 0);
 }
 
-
 /* width */
 ::-webkit-scrollbar {
-  width: 8px; 
+  width: 8px;
 }
 
 /* Track */

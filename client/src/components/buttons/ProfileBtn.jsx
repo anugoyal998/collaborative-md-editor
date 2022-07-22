@@ -4,7 +4,7 @@ import { myAuth } from "../../states";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const ProfileBtn = () => {
+const ProfileBtn = ( { dropDown = true}) => {
   const auth = myAuth((state) => state.auth);
   const navigate = useNavigate();
   const [flag, setFlag] = useState(false);
@@ -13,7 +13,7 @@ const ProfileBtn = () => {
       <div className="cursor-pointer" onClick={() => setFlag(!flag)}>
         <img src={auth?.user?.avatar} className="w-10 h-10 rounded-full" />
       </div>
-      {flag && <DropDown auth={auth} navigate={navigate} />}
+      {flag && dropDown && <DropDown auth={auth} navigate={navigate} />}
     </>
   );
 };

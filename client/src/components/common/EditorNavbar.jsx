@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { TbEdit } from "react-icons/tb";
 import { IoMdCloudDone } from "react-icons/io";
 import { renameFile } from "../../http";
+import ProfileBtn from "../buttons/ProfileBtn";
 
 const EditorNavbar = ({ lastEdited, value, fileName, setFileName, fileId }) => {
   const auth = myAuth((state) => state.auth);
@@ -31,12 +32,12 @@ const EditorNavbar = ({ lastEdited, value, fileName, setFileName, fileId }) => {
         </Link>
         {auth && auth?.isAuth && (
           <div
-            className={`flex items-center px-2 space-x-2 border ${
+            className={`hidden sm:flex items-center px-2 space-x-2 border ${
               editFlag ? "border-white" : "border-[#444]"
             } `}
           >
             <input
-              type="text" 
+              type="text"
               disabled={!editFlag}
               defaultValue={fileName}
               className="bg-black outline-none py-1 border-r border-[#444]"
@@ -67,7 +68,7 @@ const EditorNavbar = ({ lastEdited, value, fileName, setFileName, fileId }) => {
         )}
         <div className="flex items-center space-x-5">
           {auth && auth?.isAuth && lastEdited && (
-            <div className="flex">
+            <div className="hidden md:flex">
               <p className="underline">Edited &nbsp;</p>
               <TimeAgo date={lastEdited} className="underline" />
             </div>
@@ -79,11 +80,8 @@ const EditorNavbar = ({ lastEdited, value, fileName, setFileName, fileId }) => {
           </button>
 
           {auth && auth?.isAuth ? (
-            <button className="px-6 truncate py-[0.5rem] BS rounded-3xl flex items-center space-x-2 w-40">
-              <p className="truncate">{username}</p>
-              <FaUserAlt />
-            </button>
-          ) : ( 
+            <ProfileBtn dropDown={false} />
+          ) : (
             <LoginBtn />
           )}
         </div>
